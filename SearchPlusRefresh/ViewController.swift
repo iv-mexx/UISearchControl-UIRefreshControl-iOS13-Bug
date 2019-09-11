@@ -23,18 +23,12 @@ class ViewController: UITableViewController {
   private func setupSearch() {
     searchController.searchResultsUpdater = self
     navigationItem.searchController = searchController
+    definesPresentationContext = true
 
-    if let searchTerm = searchTerm, !searchTerm.isEmpty {
-      searchController.searchBar.text = searchTerm
-
-      DispatchQueue.main.async {
-        self.searchController.isActive = true
-      }
-    }
-  }
-
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
+    //
+    //  If this is set to `true` (which is also the default), UISearchBar and UIRefreshcontroll are buggy
+    //
+    navigationItem.hidesSearchBarWhenScrolling = true
   }
 
   private func setupRefresh() {
